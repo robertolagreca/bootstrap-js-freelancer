@@ -26,7 +26,8 @@
 function submitForm(event){
     event.preventDefault(); //gli diciamo di non fare azioni che farebbe di default
 
-    let hoursRequested, workType, discountCode;
+    let hoursRequested, workType, discountCode, discountValue;
+    discountValue= parseInt(0);
     //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
 
     //Prendo le ore richieste, trasformo in float
@@ -36,7 +37,31 @@ function submitForm(event){
 
     discountCode = document.getElementById("discount").value;
 
-    console.log(`Ore richieste \t${hoursRequested}\n
-                 Tipologia lavoro \t${workType}\n
-                 Codice sconto \t${discountCode}`);
+    switch(discountCode){
+        case "YHDNU32" :
+            discountValue = 25;
+            console.log("Sconto accettato con codice YHDNU32");
+            break;
+        case "JANJC63" :
+            discountValue = 25;
+            console.log("Sconto accettato con codice JANJC63");
+            break;
+        case "PWKCN25" :
+            discountValue = 25;
+            console.log("Sconto accettato con codice PWKCN25");
+            break;
+        case "SJDPO96" :
+            discountValue = 25;
+            console.log("Sconto accettato con codice SJDPO96");
+            break;
+        case "POCIE24" :
+            discountValue = 25;
+            console.log("Sconto accettato con codice POCIE24");
+            break;
+        default:
+            discountValue = 0;
+            console.log("Codice sconto non accettato o inesistente");
+    }
+
+    console.log(`Ore richieste \t${hoursRequested}\nTipologia lavoro \t${workType}\nCodice sconto \t${discountCode}`);
 }
