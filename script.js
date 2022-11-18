@@ -27,11 +27,12 @@ function submitForm(event){
     event.preventDefault(); //gli diciamo di non fare azioni che farebbe di default
 
     let hoursRequested, workType, discountCode, discountValue, hourPrice;
-    let totalPrice;
+    let totalPrice, printTotalPrice;
 
     discountValue= parseFloat(0);
     hourPrice = parseFloat(0);
     totalPrice = parseFloat(0);
+    printTotalPrice = "";
     //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
 
     //Prendo le ore richieste, trasformo in float
@@ -91,6 +92,15 @@ function submitForm(event){
 //CALCOLO PREZZO FINALE
 totalPrice = (hoursRequested * hourPrice) - ((hoursRequested * hourPrice) * discountValue).toFixed(2);
 console.log("Prezzo totale di " + totalPrice.toFixed(2) + " €. Applicato sconto del " + (discountValue * 100) + "%.");
+
+//INSERIRE PREZZO FINALE CON DICITURA SCONTO SU DOM
+printTotalPrice = document.getElementById("print-price");
+
+printTotalPrice.innerHTML = 
+`
+<p><strong>Il prezzo finale è di ${totalPrice.toFixed(2)} €.</strong>\n
+con uno sconto del ${discountValue * 100} €.</p>
+`
 
 }
 
