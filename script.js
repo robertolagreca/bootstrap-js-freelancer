@@ -26,8 +26,12 @@
 function submitForm(event){
     event.preventDefault(); //gli diciamo di non fare azioni che farebbe di default
 
-    let hoursRequested, workType, discountCode, discountValue;
-    discountValue= parseInt(0);
+    let hoursRequested, workType, discountCode, discountValue, hourPrice;
+    let totalPrice;
+
+    discountValue= parseFloat(0);
+    hourPrice = parseFloat(0);
+    totalPrice = parseFloat(0);
     //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
 
     //Prendo le ore richieste, trasformo in float
@@ -37,25 +41,26 @@ function submitForm(event){
 
     discountCode = document.getElementById("discount").value;
 
+    //SWITCH PER I CODICI SCONTO
     switch(discountCode){
         case "YHDNU32" :
-            discountValue = 25;
+            discountValue = 0.25;
             console.log("Sconto accettato con codice YHDNU32");
             break;
         case "JANJC63" :
-            discountValue = 25;
+            discountValue = 0.25;
             console.log("Sconto accettato con codice JANJC63");
             break;
         case "PWKCN25" :
-            discountValue = 25;
+            discountValue = 0.25;
             console.log("Sconto accettato con codice PWKCN25");
             break;
         case "SJDPO96" :
-            discountValue = 25;
+            discountValue = 0.25;
             console.log("Sconto accettato con codice SJDPO96");
             break;
         case "POCIE24" :
-            discountValue = 25;
+            discountValue = 0.25;
             console.log("Sconto accettato con codice POCIE24");
             break;
         default:
@@ -63,5 +68,29 @@ function submitForm(event){
             console.log("Codice sconto non accettato o inesistente");
     }
 
+
+
     console.log(`Ore richieste \t${hoursRequested}\nTipologia lavoro \t${workType}\nCodice sconto \t${discountCode}`);
+
+//SWITCH PER CAPIRE TIPOLOGIA LAVORO
+    switch(workType){
+        case "1" :
+            hourPrice = 20.50;
+            console.log("Costo orario con value 1 " + hourPrice  + "€");
+            break;
+        case "2" :
+            hourPrice = 15.30;
+            console.log("Costo orario con value 2 " + hourPrice  + "€");
+            break;
+        case "3" :
+            hourPrice = 33.60;
+            console.log("Costo orario con value 3 " + hourPrice + "€");
+            break;
+    }
+
+//CALCOLO PREZZO FINALE
+totalPrice = (hoursRequested * hourPrice) - ((hoursRequested * hourPrice) * discountValue).toFixed(2);
+console.log("Prezzo totale di " + totalPrice.toFixed(2) + " €. Applicato sconto del " + (discountValue * 100) + "%.");
+
 }
+
