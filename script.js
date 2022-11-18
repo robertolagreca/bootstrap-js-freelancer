@@ -97,6 +97,7 @@ function checkDiscountCode(arrayDiscountCode, discountCodeF){
 }
 
 
+
 //FUNZIONE SWITCH PER CAPIRE TIPOLOGIA LAVORO
 function checkWorkType(workTypeF){
     let hourPriceF= parseFloat(0);
@@ -151,11 +152,12 @@ return printTotalPriceF;
 function getDiscountWarning(discountValuef,discountCodeF ) {
 
 if(discountValuef == 0 && discountCodeF != ""){
-
-let printDiscountCodeWarning = "";
+let inputDiscountWarning;
+let printDiscountCodeWarning;
 let createPDiscountWarning="";
 let textPDiscountWarning="";
 
+//Creo nuovo paragrafo che viene aggiunto
 createPDiscountWarning = document.createElement("p");
 createPDiscountWarning.setAttribute("id", "discount-warning");
 
@@ -164,6 +166,10 @@ textPDiscountWarning = document.createTextNode("Il codice inserito è sbagliato/
 createPDiscountWarning.appendChild(textPDiscountWarning);
 console.log(createPDiscountWarning);
 printDiscountCodeWarning = document.getElementById("print-price").appendChild(createPDiscountWarning);
+
+//Il codice sconto errato diventa rosso.
+inputDiscountWarning = document.getElementById("discount").classList;
+inputDiscountWarning.add("text-danger");
 }
 }
 
