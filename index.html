@@ -128,7 +128,7 @@
         <div class="container mt-3 w-75 bg-info px-5 py-2">
             <div class="row">
                 <div class="col">
-                    <form class="row g-3" onsubmit = "calcolaPrezzo(event)"> 
+                    <form class="row g-3" onsubmit = "submitForm(event)"> 
                       <!-- NOTA MIA inserire qui onsubmit ="..." per far funzionare 
                       funzione cliccando il button quando si è in un FORM-->
                         <div class="col-12 text-center">
@@ -147,12 +147,12 @@
                             <input type="email" class="form-control" id="inputEmail4" />
                         </div>
                         <div class="col-md-6">
-                            <label for="inputPassword4" class="form-label">Hours requested</label>
-                            <input type="text" class="form-control" id="inputPassword4" />
+                            <label for="hours" class="form-label">Hours requested</label>
+                            <input type="text" class="form-control" id="hours" />
                         </div>
                         <div class="col-md-6">
-                            <label for="inputState" class="form-label">Type of work</label>
-                            <select id="inputState" class="form-select">
+                            <label for="work-type" class="form-label">Type of work</label>
+                            <select id="work-type" class="form-select">
                                 <option selected="">Choose...</option>
                                 <!--NOTA MIA aggiunta di value-->
                                 <option value="1">Backend Development</option>

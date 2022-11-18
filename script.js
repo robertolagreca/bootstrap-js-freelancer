@@ -19,6 +19,19 @@
 //Mostrare il risultato del calcolo del prezzo finale in una “forma umana” 
 //in un apposito tag HTML appena sotto il bottone send.
 
-let btnPrice = document.getElementById("btn-price");
-btnPrice.addEventListener('click', calcolaPrezzo())
-calcolaPrezzo()
+//let btnPrice = document.getElementById("btn-price");
+//btnPrice.addEventListener('click', calcolaPrezzo(event))
+
+//ABBOZZANDO
+function submitForm(event){
+    event.preventDefault(); //gli diciamo di non fare azioni che farebbe di default
+
+    //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
+
+    //Prendo le ore richieste, trasformo in float
+    hoursRequested = parseFloat(document.getElementById("hours").value);
+    
+    workType = document.getElementById("work-type").value;
+
+    console.log(hoursRequested);
+}
