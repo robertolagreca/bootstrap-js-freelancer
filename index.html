@@ -128,8 +128,9 @@
         <div class="container mt-3 w-75 bg-info px-5 py-2">
             <div class="row">
                 <div class="col">
-                    <form class="row g-3"> <!-- NOTA MIA inserire qui onsubmit ="..." per far funzionare 
-                                            funzione cliccando il button quando si è in un FORM-->
+                    <form class="row g-3" onsubmit = "calcolaPrezzo(event)"> 
+                      <!-- NOTA MIA inserire qui onsubmit ="..." per far funzionare 
+                      funzione cliccando il button quando si è in un FORM-->
                         <div class="col-12 text-center">
                             <h3>WANT AN OFFER?</h3>
                         </div>
@@ -153,9 +154,10 @@
                             <label for="inputState" class="form-label">Type of work</label>
                             <select id="inputState" class="form-select">
                                 <option selected="">Choose...</option>
-                                <option>Backend Development</option>
-                                <option>Frontend Development</option>
-                                <option>Project Analisys</option>
+                                <!--NOTA MIA aggiunta di value-->
+                                <option value="1">Backend Development</option>
+                                <option value="2">Frontend Development</option>
+                                <option value="3">Project Analisys</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -170,9 +172,9 @@
                         </div>
 
                         <div class="col-12 d-grid justify-content-sm-center">
-                            <!-- NOTA d-grid = display: grid, per rendere responsivo il btn-->
+                            <!-- NOTA MIA d-grid = display: grid, per rendere responsivo il btn-->
                             <button type="submit"
-                                class="btn btn-primary bg-warning text-dark border-0"><strong>Send</strong></button>
+                                class="btn btn-primary bg-warning text-dark border-0" id="btn-price"><strong>Send</strong></button>
                         </div>
 
                         <div class="col-12">

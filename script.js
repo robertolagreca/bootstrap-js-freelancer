@@ -18,4 +18,7 @@
 
 //Mostrare il risultato del calcolo del prezzo finale in una “forma umana” 
 //in un apposito tag HTML appena sotto il bottone send.
-    
+
+let btnPrice = document.getElementById("btn-price");
+btnPrice.addEventListener('click', calcolaPrezzo())
+calcolaPrezzo()
