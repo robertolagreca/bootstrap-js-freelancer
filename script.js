@@ -26,6 +26,7 @@
 function submitForm(event){
     event.preventDefault(); //gli diciamo di non fare azioni che farebbe di default
 
+    let hoursRequested, workType, discountCode;
     //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
 
     //Prendo le ore richieste, trasformo in float
@@ -33,5 +34,9 @@ function submitForm(event){
     
     workType = document.getElementById("work-type").value;
 
-    console.log("Ore richieste " + hoursRequested + " e tipologia lavoro " + workType);
+    discountCode = document.getElementById("discount").value;
+
+    console.log(`Ore richieste \t${hoursRequested}\n
+                 Tipologia lavoro \t${workType}\n
+                 Codice sconto \t${discountCode}`);
 }
