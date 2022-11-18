@@ -22,10 +22,11 @@
 //let btnPrice = document.getElementById("btn-price");
 //btnPrice.addEventListener('click', calcolaPrezzo(event))
 
-//ABBOZZANDO
+//FUNZIONE CHE SI ATTIVA QUANDO VIENE CLICCATO IL BOTTONE IN DOM
 function submitForm(event){
     event.preventDefault(); //gli diciamo di non fare azioni che farebbe di default
 
+    //Dichiariazione variabili e assegnazione valori iniziali.
     let hoursRequested, workType, discountCode, discountValue, hourPrice;
     let totalPrice, printTotalPrice;
 
@@ -35,72 +36,120 @@ function submitForm(event){
     printTotalPrice = "";
     //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
 
+
+
     //Prendo le ore richieste, trasformo in float
     hoursRequested = parseFloat(document.getElementById("hours").value);
-    
+
+    //Prendo tipologia lavoro
     workType = document.getElementById("work-type").value;
 
+    //Prendo codice sconto
     discountCode = document.getElementById("discount").value;
 
-    //SWITCH PER I CODICI SCONTO
-    switch(discountCode){
-        case "YHDNU32" :
-            discountValue = 0.25;
-            console.log("Sconto accettato con codice YHDNU32");
-            break;
-        case "JANJC63" :
-            discountValue = 0.25;
-            console.log("Sconto accettato con codice JANJC63");
-            break;
-        case "PWKCN25" :
-            discountValue = 0.25;
-            console.log("Sconto accettato con codice PWKCN25");
-            break;
-        case "SJDPO96" :
-            discountValue = 0.25;
-            console.log("Sconto accettato con codice SJDPO96");
-            break;
-        case "POCIE24" :
-            discountValue = 0.25;
-            console.log("Sconto accettato con codice POCIE24");
-            break;
-        default:
-            discountValue = 0;
-            console.log("Codice sconto non accettato o inesistente");
-    }
-
-
-
+    //stampa su console ore richieste, tipologia lavoro e codice sconto
     console.log(`Ore richieste \t${hoursRequested}\nTipologia lavoro \t${workType}\nCodice sconto \t${discountCode}`);
 
-//SWITCH PER CAPIRE TIPOLOGIA LAVORO
-    switch(workType){
-        case "1" :
-            hourPrice = 20.50;
-            console.log("Costo orario con value 1 " + hourPrice  + "€");
-            break;
-        case "2" :
-            hourPrice = 15.30;
-            console.log("Costo orario con value 2 " + hourPrice  + "€");
-            break;
-        case "3" :
-            hourPrice = 33.60;
-            console.log("Costo orario con value 3 " + hourPrice + "€");
-            break;
-    }
 
-//CALCOLO PREZZO FINALE
-totalPrice = (hoursRequested * hourPrice) - ((hoursRequested * hourPrice) * discountValue).toFixed(2);
-console.log("Prezzo totale di " + totalPrice.toFixed(2) + " €. Applicato sconto del " + (discountValue * 100) + "%.");
 
-//INSERIRE PREZZO FINALE CON DICITURA SCONTO SU DOM
-printTotalPrice = document.getElementById("print-price");
+    //FUNZIONE SWITCH PER I CODICI SCONTO
+    discountValue = checkDiscountCode(discountCode);
+    
+    //FUNZIONE SWITCH PER CAPIRE TIPOLOGIA LAVORO
+    hourPrice = checkWorkType(workType);
 
-printTotalPrice.innerHTML = 
-`
-<p><strong>Il prezzo finale è di ${totalPrice.toFixed(2)} €.</strong>\n
-con uno sconto del ${discountValue * 100} €.</p>
-`
+    //FUNZIONE CALCOLO PREZZO FINALE
+    totalPrice = getTotalPrice(hoursRequested, hourPrice, discountValue);
+    
+    //FUNZIONE STAMPA SU DOM PREZZO FINALE E SCONTO APPLICATO
+    printTotalPrice = getPrintTotalPrice (totalPrice, discountValue);
 
+
+
+
+    //stampa su console prezzo totale e sconto applicato.
+    console.log("Prezzo totale di " + totalPrice.toFixed(2) + " €. Applicato sconto del " + (discountValue * 100) + "%.");
 }
 
+
+
+
+//FUNZIONE SWITCH PER I CODICI SCONTO
+function checkDiscountCode(discountCodeF){
+switch(discountCodeF){
+    case "YHDNU32" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice YHDNU32");
+        break;
+    case "JANJC63" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice JANJC63");
+        break;
+    case "PWKCN25" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice PWKCN25");
+        break;
+    case "SJDPO96" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice SJDPO96");
+        break;
+    case "POCIE24" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice POCIE24");
+        break;
+    default:
+        discountValueF = 0;
+        console.log("Codice sconto non accettato o inesistente");
+}
+return discountValueF;
+}
+
+
+
+
+//FUNZIONE SWITCH PER CAPIRE TIPOLOGIA LAVORO
+function checkWorkType(workTypeF){
+    let hourPriceF= parseFloat(0);
+switch(workTypeF){
+    
+    case "1" :
+        hourPriceF = 20.50;
+        console.log("Costo orario con value 1 " + hourPriceF  + "€");
+        break;
+    case "2" :
+        hourPriceF = 15.30;
+        console.log("Costo orario con value 2 " + hourPriceF  + "€");
+        break;
+    case "3" :
+        hourPriceF = 33.60;
+        console.log("Costo orario con value 3 " + hourPriceF + "€");
+        break;
+}
+return hourPriceF;
+}
+
+
+
+
+//FUNZIONE CALCOLO PREZZO FINALE
+function getTotalPrice(hoursRequestedF, hourPriceF, discountValueF){
+    let totalPriceF = parseFloat(0);
+    totalPriceF = (hoursRequestedF * hourPriceF) - ((hoursRequestedF * hourPriceF) * discountValueF).toFixed(2);
+    return totalPriceF
+}
+
+
+
+
+//FUNZIONE STAMPA SU DOM PREZZO FINALE E SCONTO APPLICATO
+function getPrintTotalPrice (totalPriceF, discountValueF){
+let printTotalPriceF = "";
+printTotalPriceF = document.getElementById("print-price");
+
+printTotalPriceF.innerHTML = 
+`
+<p><strong>Il prezzo finale è di ${totalPriceF.toFixed(2)} €.</strong>
+con uno sconto del ${discountValueF * 100} %.</p>
+`
+return printTotalPriceF;
+}
