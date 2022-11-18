@@ -49,6 +49,8 @@ function submitForm(event){
 
     //Prendo codice sconto
     discountCode = document.getElementById("discount").value;
+   
+    
 
     //stampa su console ore richieste, tipologia lavoro e codice sconto
     console.log(`Ore richieste \t${hoursRequested}\nTipologia lavoro \t${workType}\nCodice sconto \t${discountCode}`);
@@ -67,6 +69,8 @@ function submitForm(event){
     //FUNZIONE STAMPA SU DOM PREZZO FINALE E SCONTO APPLICATO
     printTotalPrice = getPrintTotalPrice (totalPrice, discountValue);
 
+    //FUNZIONE STAMPA SE SI E' INSERITO CODICE ERRATO O NULLA.
+    getDiscountWarning(discountValue, discountCode);
 
 
 
@@ -78,6 +82,8 @@ function submitForm(event){
 //FUNZIONE CICLO FOR PER CONTROLLO CODICI SCONTO
 function checkDiscountCode(arrayDiscountCode, discountCodeF){
     let discountValueF = parseFloat(0);
+    
+
     for(i = 0; i < arrayDiscountCode.length; i++){
         if (discountCodeF == arrayDiscountCode[i]){
             discountValueF = 0.25;
@@ -86,30 +92,9 @@ function checkDiscountCode(arrayDiscountCode, discountCodeF){
         }
     }
     console.log("Sconto non accettato/non inserito/inesistente");
-    alert("Sconto non accettato/non inserito/inesistente");
-
-    //WORK IN PROGESS PER AGGIUNGERE PARAGRAFO.
-    /*let printDiscountCodeWarning = "";
-    let createPDiscountWarning="";
-    let textPDiscountWarning="";
-
-    //printDiscountCodeWarning = document.querySelector("#print-price");
     
-    createPDiscountWarning = document.createElement("p");
-    createPDiscountWarning.setAttribute("id", "discount-warning");
-
-    textPDiscountWarning = document.createTextNode("Il codice inserito è sbagliato/inesistente");
-
-    createPDiscountWarning.appendChild(textPDiscountWarning);
-    console.log(createPDiscountWarning);
-    printDiscountCodeWarning = document.getElementById("print-price").appendChild(createPDiscountWarning);
-    //printDiscountCodeWarning.appendChild(createPDiscountWarning); */
-
     return discountValueF;
 }
-
-
-
 
 
 //FUNZIONE SWITCH PER CAPIRE TIPOLOGIA LAVORO
@@ -159,7 +144,25 @@ Con uno sconto del ${discountValueF * 100} %.</p>
 return printTotalPriceF;
 }
 
+//FUNZIONE CHE AGGIUNGE TESTO SOLO SE IL CODICE SCONTO INSERITO E' SBAGLIATO
+function getDiscountWarning(discountValuef,discountCodeF ) {
 
+if(discountValuef == 0 && discountCodeF != ""){
+
+let printDiscountCodeWarning = "";
+let createPDiscountWarning="";
+let textPDiscountWarning="";
+
+createPDiscountWarning = document.createElement("p");
+createPDiscountWarning.setAttribute("id", "discount-warning");
+
+textPDiscountWarning = document.createTextNode("Il codice inserito è sbagliato/inesistente");
+
+createPDiscountWarning.appendChild(textPDiscountWarning);
+console.log(createPDiscountWarning);
+printDiscountCodeWarning = document.getElementById("print-price").appendChild(createPDiscountWarning);
+}
+}
 
 
 /*FUNZIONE SWITCH PER I CODICI SCONTO
