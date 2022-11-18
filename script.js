@@ -36,8 +36,8 @@ function submitForm(event){
     discountValue= parseFloat(0);
     hourPrice = parseFloat(0);
     totalPrice = parseFloat(0);
-    printTotalPrice = "";
-    //NOTA MIA devo prendere INPUT ore richieste e INPUT tipologia di lavoro
+    
+    
 
 
 
@@ -69,7 +69,7 @@ function submitForm(event){
     //FUNZIONE STAMPA SU DOM PREZZO FINALE E SCONTO APPLICATO
     printTotalPrice = getPrintTotalPrice (totalPrice, discountValue);
 
-    //FUNZIONE STAMPA SE SI E' INSERITO CODICE ERRATO O NULLA.
+    //FUNZIONE STAMPA SE SI E' INSERITO CODICE ERRATO.
     getDiscountWarning(discountValue, discountCode);
 
 
@@ -144,6 +144,9 @@ Con uno sconto del ${discountValueF * 100} %.</p>
 return printTotalPriceF;
 }
 
+
+
+
 //FUNZIONE CHE AGGIUNGE TESTO SOLO SE IL CODICE SCONTO INSERITO E' SBAGLIATO
 function getDiscountWarning(discountValuef,discountCodeF ) {
 
@@ -163,6 +166,8 @@ console.log(createPDiscountWarning);
 printDiscountCodeWarning = document.getElementById("print-price").appendChild(createPDiscountWarning);
 }
 }
+
+
 
 
 /*FUNZIONE SWITCH PER I CODICI SCONTO
