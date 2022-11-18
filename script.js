@@ -88,10 +88,11 @@ function checkDiscountCode(arrayDiscountCode, discountCodeF){
         if (discountCodeF == arrayDiscountCode[i]){
             discountValueF = 0.25;
             console.log("Sconto accettato");
+            arrayDiscountCode.splice(i, 1);
             return discountValueF;
         }
     }
-    console.log("Sconto non accettato/non inserito/inesistente");
+    console.log("Sconto non accettato/non inserito/inesistente/o già utilizzato");
     
     return discountValueF;
 }
@@ -161,7 +162,7 @@ let textPDiscountWarning="";
 createPDiscountWarning = document.createElement("p");
 createPDiscountWarning.setAttribute("id", "discount-warning");
 
-textPDiscountWarning = document.createTextNode("Il codice inserito è sbagliato/inesistente");
+textPDiscountWarning = document.createTextNode("Il codice inserito è sbagliato/inesistente/già usato");
 
 createPDiscountWarning.appendChild(textPDiscountWarning);
 console.log(createPDiscountWarning);
