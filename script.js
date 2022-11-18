@@ -33,5 +33,5 @@ function submitForm(event){
     
     workType = document.getElementById("work-type").value;
 
-    console.log(hoursRequested);
+    console.log("Ore richieste " + hoursRequested + " e tipologia lavoro " + workType);
 }
