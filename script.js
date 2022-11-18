@@ -10,7 +10,7 @@
     //Se la commissione riguarda l’analisi progettuale di un progetto il prezzo orario è di 33.60 € l'ora
 
 //Se poi l’utente inserisce un codice promozionale tra i seguenti 
-//YHDNU32, JANJC63, PWKCN25, SJDPO96, POCIE24, fate in modo che 
+//YHDNU32, JANJC63, PWKCN25, SJDPO96, C, fate in modo che 
 //l’utente abbia diritto ad uno sconto del 25% sul prezzo finale.
 
 //Se il codice inserito non è valido, informate l’utente che il 
@@ -21,6 +21,9 @@
 
 //let btnPrice = document.getElementById("btn-price");
 //btnPrice.addEventListener('click', calcolaPrezzo(event))
+
+//dichiarazione ed assegnazione array con codici sconto
+let arrayDiscountCode = ["YHDNU32" , "JANJC63" , "PWKCN25" , "SJDPO96" , "SJDPO96" ];
 
 //FUNZIONE CHE SI ATTIVA QUANDO VIENE CLICCATO IL BOTTONE IN DOM
 function submitForm(event){
@@ -53,8 +56,8 @@ function submitForm(event){
 
 
     //FUNZIONE SWITCH PER I CODICI SCONTO
-    discountValue = checkDiscountCode(discountCode);
-    
+    discountValue = checkDiscountCode(arrayDiscountCode, discountCode);
+
     //FUNZIONE SWITCH PER CAPIRE TIPOLOGIA LAVORO
     hourPrice = checkWorkType(workType);
 
@@ -72,37 +75,39 @@ function submitForm(event){
 }
 
 
+//FUNZIONE CICLO FOR PER CONTROLLO CODICI SCONTO
+function checkDiscountCode(arrayDiscountCode, discountCodeF){
+    let discountValueF = parseFloat(0);
+    for(i = 0; i < arrayDiscountCode.length; i++){
+        if (discountCodeF == arrayDiscountCode[i]){
+            discountValueF = 0.25;
+            console.log("Sconto accettato");
+            return discountValueF;
+        }
+    }
+    console.log("Sconto non accettato/non inserito/inesistente");
+    alert("Sconto non accettato/non inserito/inesistente");
 
+    //WORK IN PROGESS PER AGGIUNGERE PARAGRAFO.
+    /*let printDiscountCodeWarning = "";
+    let createPDiscountWarning="";
+    let textPDiscountWarning="";
 
-//FUNZIONE SWITCH PER I CODICI SCONTO
-function checkDiscountCode(discountCodeF){
-switch(discountCodeF){
-    case "YHDNU32" :
-        discountValueF = 0.25;
-        console.log("Sconto accettato con codice YHDNU32");
-        break;
-    case "JANJC63" :
-        discountValueF = 0.25;
-        console.log("Sconto accettato con codice JANJC63");
-        break;
-    case "PWKCN25" :
-        discountValueF = 0.25;
-        console.log("Sconto accettato con codice PWKCN25");
-        break;
-    case "SJDPO96" :
-        discountValueF = 0.25;
-        console.log("Sconto accettato con codice SJDPO96");
-        break;
-    case "POCIE24" :
-        discountValueF = 0.25;
-        console.log("Sconto accettato con codice POCIE24");
-        break;
-    default:
-        discountValueF = 0;
-        console.log("Codice sconto non accettato o inesistente");
+    //printDiscountCodeWarning = document.querySelector("#print-price");
+    
+    createPDiscountWarning = document.createElement("p");
+    createPDiscountWarning.setAttribute("id", "discount-warning");
+
+    textPDiscountWarning = document.createTextNode("Il codice inserito è sbagliato/inesistente");
+
+    createPDiscountWarning.appendChild(textPDiscountWarning);
+    console.log(createPDiscountWarning);
+    printDiscountCodeWarning = document.getElementById("print-price").appendChild(createPDiscountWarning);
+    //printDiscountCodeWarning.appendChild(createPDiscountWarning); */
+
+    return discountValueF;
 }
-return discountValueF;
-}
+
 
 
 
@@ -149,7 +154,40 @@ printTotalPriceF = document.getElementById("print-price");
 printTotalPriceF.innerHTML = 
 `
 <p><strong>Il prezzo finale è di ${totalPriceF.toFixed(2)} €.</strong>
-con uno sconto del ${discountValueF * 100} %.</p>
+Con uno sconto del ${discountValueF * 100} %.</p>
 `
 return printTotalPriceF;
 }
+
+
+
+
+/*FUNZIONE SWITCH PER I CODICI SCONTO
+function checkDiscountCodeSwitch(discountCodeF){
+switch(discountCodeF){
+    case "YHDNU32" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice YHDNU32");
+        break;
+    case "JANJC63" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice JANJC63");
+        break;
+    case "PWKCN25" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice PWKCN25");
+        break;
+    case "SJDPO96" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice SJDPO96");
+        break;
+    case "POCIE24" :
+        discountValueF = 0.25;
+        console.log("Sconto accettato con codice POCIE24");
+        break;
+    default:
+        discountValueF = 0;
+        console.log("Codice sconto non accettato o inesistente");
+}
+return discountValueF;
+} */
